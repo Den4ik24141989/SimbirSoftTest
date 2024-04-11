@@ -46,9 +46,9 @@ public class BaseTest {
         driver.get(url);
     }
 
-    @Step("Вычислить N-е число Фибоначчи, где N - это текущий день месяца + 1")
+    @Step("Вычислить N-е число Фибоначчи, где N - это текущий день месяца")
     protected String calculateFibonacciNumber() {
-        int n = LocalDateTime.now().getDayOfMonth() + 1;
+        int n = LocalDateTime.now().getDayOfMonth();
         int[] fi = new int[n + 1];
         fi[0] = 0;
         fi[1] = 1;

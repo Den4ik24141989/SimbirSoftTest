@@ -2,7 +2,6 @@ package Pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 
 public class AccountPage extends AbstractPage {
     private final By transactions = By.xpath("//button[@ng-click='transactions()']");
@@ -16,7 +15,7 @@ public class AccountPage extends AbstractPage {
 
     @Step("Открыть страницу транзакций")
     public void clickTransactions() {
-        driver.findElement(transactions).click();
+        clickWebElement(transactions);
     }
 
     @Step("Выполнить пополнение счета на сумму равную вычисленному числу Фибоначчи дня месяца +1")
@@ -37,8 +36,7 @@ public class AccountPage extends AbstractPage {
         return this;
     }
 
-    @Step ("Выполнить проверку баланса - должен быть равен {amount}")
-    public void checkBalance(String amount) {
-        Assert.assertEquals(driver.findElement(balance).getText(), amount);
+    public String getBalance() {
+        return getTextWebElement(balance);
     }
 }

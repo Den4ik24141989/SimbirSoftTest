@@ -2,6 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class AbstractPage {
     protected static WebDriver driver;
@@ -10,15 +11,24 @@ public class AbstractPage {
         driver = webDriver;
     }
 
-    public void clickWebElement(By by) {
+    protected void clickWebElement(By by) {
         driver.findElement(by).click();
     }
 
-    public void sendKeysWebElement(By by, String send) {
+    protected void sendKeysWebElement(By by, String send) {
         driver.findElement(by).sendKeys(send);
     }
 
-    public void threadSleep(int mills) {
+    protected String getTextWebElement(By by) {
+        return driver.findElement(by).getText();
+    }
+
+    protected void selectByVisibleTextWebElement(String text, By by) {
+        new Select(driver.findElement(by))
+                .selectByVisibleText(text);
+    }
+
+    protected void threadSleep(int mills) {
         try {
             Thread.sleep(mills);
         } catch (InterruptedException e) {

@@ -1,5 +1,6 @@
 import Models.Transaction;
 import Models.TransactionType;
+import assertion.AssertsManager;
 import org.testng.annotations.*;
 import utils.csv.CsvWriter;
 import utils.allure.AllureHelper;
@@ -30,13 +31,15 @@ public class TransactionsUITest extends BaseTest {
         accountPage.makeDeposit(transactionDebit.getAmount());
 
         Transaction transactionWithdraw = new Transaction(LocalDateTime.now(), amount, TransactionType.Debit);
-        accountPage.withdrawDeposit(amount)
-                .checkBalance("0");
+        accountPage.withdrawDeposit(transactionDebit.getAmount());
+
+        AssertsManager.checkBalance(accountPage.getBalance(), "0");
 
         accountPage.clickTransactions();
 
         List<Transaction> transactionList = transactionsPage.getTransactions();
-        transactionsPage.checkTransaction(transactionList, transactionDebit, transactionWithdraw);
+
+        AssertsManager.checkTransaction(transactionList, transactionDebit, transactionWithdraw);
 
         CsvWriter.writeTransactionsToCsv(transactionList);
 

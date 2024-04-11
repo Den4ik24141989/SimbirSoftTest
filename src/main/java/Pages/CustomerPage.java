@@ -2,7 +2,6 @@ package Pages;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 
 public class CustomerPage extends AbstractPage {
     private final By yourName = By.xpath("//select[@id='userSelect']");
@@ -11,8 +10,7 @@ public class CustomerPage extends AbstractPage {
 
     @Step("Авторизоваться пользователем «{name}»")
     public CustomerPage selectYourName(String name) {
-        new Select(driver.findElement(yourName))
-                .selectByVisibleText(name);
+        selectByVisibleTextWebElement(name, yourName);
         return this;
     }
 
