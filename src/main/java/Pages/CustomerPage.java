@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 
 public class CustomerPage extends AbstractPage {
     private final By yourName = By.xpath("//select[@id='userSelect']");
-
     private final By submit = By.xpath("//button[@type='submit']");
 
     @Step("Авторизоваться пользователем «{name}»")

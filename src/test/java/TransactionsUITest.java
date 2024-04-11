@@ -1,9 +1,9 @@
 import Models.Transaction;
 import Models.TransactionType;
 import assertion.AssertsManager;
-import org.testng.annotations.*;
-import utils.csv.CsvWriter;
+import org.testng.annotations.Test;
 import utils.allure.AllureHelper;
+import utils.csv.CsvWriter;
 
 import java.io.IOException;
 import java.nio.file.Files;

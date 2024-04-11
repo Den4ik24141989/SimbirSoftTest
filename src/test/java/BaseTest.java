@@ -23,19 +23,19 @@ public class BaseTest {
     protected AccountPage accountPage = new AccountPage();
     protected TransactionsPage transactionsPage = new TransactionsPage();
 
-
     @BeforeSuite
     public void before() throws IOException {
         System.getProperties().load(ClassLoader.getSystemResourceAsStream("config.properties"));
         setupDriver();
     }
+
     @Step("Создать экземпляр драйвера")
     private void setupDriver() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setPlatform(Platform.WIN10);
         capabilities.setBrowserName("chrome");
 
-        driver = new RemoteWebDriver(new URL( "http://localhost:4444"), capabilities);
+        driver = new RemoteWebDriver(new URL("http://localhost:4444"), capabilities);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(IMPLICITLY_WAIT, TimeUnit.SECONDS);
         AbstractPage.setDriver(driver);
@@ -52,8 +52,8 @@ public class BaseTest {
         int[] fi = new int[n + 1];
         fi[0] = 0;
         fi[1] = 1;
-        for(int i = 2; i <= n; i++) {
-            fi[i] = fi[i-1] + fi[i-2];
+        for (int i = 2; i <= n; i++) {
+            fi[i] = fi[i - 1] + fi[i - 2];
         }
         return String.valueOf(fi[n]);
     }
